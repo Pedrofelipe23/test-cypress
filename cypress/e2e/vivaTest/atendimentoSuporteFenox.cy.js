@@ -7,7 +7,18 @@ describe('atendimentoSuporteFenox', () => {
         cy.visit('https://esfenox.solutionsa.com.br/fenox/suporte/atendimentoSuporteFenox')
       }) 
     
-    it('consultando placa no input de pesquisa', () => {
+    it('efetuando request sem passar placa no input de pesquisa',() => {
+        cy.get('#searchButton').click()
+        cy.get('.swal2-modal').should('contain','Por favor, insira uma placa!')
+    })
+    
+    it('tentativa de request com dados invalidos',() => {
+        cy.get('#searchSuporte').type('AAAAA')
+        cy.get('#searchButton').click()
+        cy.get('.swal2-modal').should('contain','Atendimento não encontrado.')
+    })
+
+    it('consultando vistoria com placa valida no input de pesquisa', () => {
         cy.get('.label-search').should('contain', 'Pesquisar') //assert
         cy.get('#searchSuporte').type('PPG1F09')
         cy.get('#searchButton').click()
