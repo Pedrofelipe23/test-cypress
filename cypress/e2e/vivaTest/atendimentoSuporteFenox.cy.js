@@ -43,7 +43,7 @@ describe('atendimentoSuporteFenox', () => {
         cy.get('#searchSuporte').type('RQM7F43')
         cy.get('#searchButton').click()
 
-        cy.get('[data-id="fotosProcesso"]').should('be.visible','Fotos Processo')
+        cy.get('[data-id="fotosProcesso"]').should('be.visible','Fotos Processo') //assert
         cy.get('[data-id="fotosProcesso"]').click(), {force: true}
 
         cy.get('#fotos1 > h3').should('be.visible','Fotos Vistoria')
