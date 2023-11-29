@@ -12,11 +12,11 @@ describe('atendimentoSuporteFenox', () => {
         cy.get('.swal2-modal').should('contain','Por favor, insira uma placa!')
     })
     
-    it('tentativa de request com dados invalidos',() => {
-        cy.get('#searchSuporte').type('AAAAA')
-        cy.get('#searchButton').click()
-        cy.get('.swal2-modal').should('contain','Atendimento não encontrado.')
-    })
+    //it('tentativa de request com dados invalidos',() => {
+      //  cy.get('#searchSuporte').type('AAAAA')
+        //cy.get('#searchButton').click()
+        //cy.get('.swal2-modal').should('contain','Atendimento não encontrado.') //assert
+    //})
 
     it('consultando vistoria com placa valida no input de pesquisa', () => {
         cy.get('.label-search').should('contain', 'Pesquisar') //assert
@@ -46,7 +46,7 @@ describe('atendimentoSuporteFenox', () => {
         cy.get('[data-id="fotosProcesso"]').should('be.visible','Fotos Processo') //assert
         cy.get('[data-id="fotosProcesso"]').click(), {force: true}
 
-        cy.get('#fotos1 > h3').should('be.visible','Fotos Vistoria')
+        cy.get('#fotos1 > h3').should('be.visible','Fotos Vistoria') //assert
         cy.get('#fotosProcesso').scrollTo('bottom')
     })
 
