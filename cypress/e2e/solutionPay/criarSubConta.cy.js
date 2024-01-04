@@ -1,7 +1,7 @@
 describe('SolutionPay - Cadastrar Conta', () => {
 
     beforeEach(() => {
-        cy.visit('https://desenv.vivabr.com.br/payv2/login/auth')
+        cy.visit('https://desenv.vivabr.com.br/pay/login/auth')
       }) 
 
 
@@ -93,7 +93,7 @@ describe('SolutionPay - Cadastrar Conta', () => {
 
     })
 
-    it.only('Tentativa de criar conta com email ja cadastrado',()=>{
+    it('Tentativa de criar conta com email ja cadastrado',()=>{
         cy.get('a.text-secondary').click()
 
         cy.get('#tipoConta')
