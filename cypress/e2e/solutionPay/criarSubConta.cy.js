@@ -102,12 +102,11 @@ describe('SolutionPay - Cadastrar Conta', () => {
         });
         
         cy.get('#nome').type('Pedro test')
-        cy.get('#cpf').type('16776548722')
+        cy.get('#cnpj').type('05495002000112')
         cy.get('#email').type('pedro.pereirawj@gmail.com')
         cy.get('#loginEmail').type('pedro.pereirawj@gmail.com')
         cy.get('#phone').type('2140028922')
         cy.get('#mobilePhone').type('21999522536')
-        cy.get('#birthDate').type('30061997')
         cy.get('#cep').type('22783113')
         cy.get('#numero').type('11')
         cy.get('#complemento').type('casa 10')
