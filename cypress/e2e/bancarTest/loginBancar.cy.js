@@ -1,17 +1,15 @@
 describe('SolutionPay - login', () => {
 
     beforeEach(() => {
-        cy.visit('https://desenv.vivabr.com.br/pay/login/auth')
+        cy.visit('https://bancar.inf.br/pay/')
       }) 
 
-
-    //it.only('',()=>{})  
     
     it('efetuando login com dados do usuario em analise',() => {
         cy.get('.mb-4 > .text-secondary').should('contain', 'Preencha os campos abaixo com seus dados')
-        cy.login('jorge@wj.com', '1234')
+        cy.login('pedro.pereirawj@gmail.com', 'Wino@2330')
 
-        cy.visit('https://desenv.vivabr.com.br/pay/')
+        cy.visit('https://bancar.inf.br/pay/pendente')
         cy.get('.flex > .text-palatinate-400').should('contain','Ops, seus documentos ainda estão em análise.')
         cy.get('.flex > .text-palatinate-400').should('contain','Por favor, retorne em breve!')
     })
