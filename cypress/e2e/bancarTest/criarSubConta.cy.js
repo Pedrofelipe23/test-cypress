@@ -20,8 +20,8 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#cnpj').type('11111111111111')
         cy.get(':nth-child(2) > .hidden').click()
 
-        cy.get('#swal2-content > p')
-            .contains('CNPJ Inválido! Por favor, preencha o campo corretamente!');
+        cy.get('#swal2-content > p').should('contain','CNPJ Inválido!');
+        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente!');
     })
 
     it('Validação campo CNPJ sem retornar dados na api empresaAqui',()=>{
@@ -59,8 +59,8 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#email').type('abc@123')
         cy.get('#continuar').click()
 
-        cy.get('#swal2-content > p')
-            .contains('E-mail Inválido! Por favor, preencha o campo corretamente');
+        cy.get('#swal2-content > p').should('contain','E-mail Inválido!');
+        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente');
     })
 
     it('Validação campo Telefone Fixo',()=>{
@@ -71,7 +71,7 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#continuar').click()
 
         cy.get('#swal2-content > p')
-            .contains('Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
+            .should('contain','Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
     })
 
     it('Validação campo Telefone Celular',()=>{
@@ -82,7 +82,7 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#continuar').click()
 
         cy.get('#swal2-content > p')
-            .contains('Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
+            .should('contain','Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
     })
 
     // it('Validação campo Data de Nascimento',()=>{
@@ -100,8 +100,8 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#cep').type('12345678')
         cy.get('#continuar').click()
 
-        cy.get('#swal2-content > p')
-            .contains('CEP Inválido! Por favor, preencha o campo corretamente!');
+        cy.get('#swal2-content > p').should('contain','CEP Inválido!');
+        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente!');
     })
 
     it('Validação de mascara campo CEP ',()=>{
@@ -111,8 +111,8 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#cep').type('12345')
         cy.get('#continuar').click()
 
-        cy.get('#swal2-content > p')
-            .contains('O CEP deve conter 8 dígitos. Por favor, preencha corretamente.');
+        cy.get('#swal2-content > p').should('contain','O CEP deve conter 8 dígitos.');
+        cy.get('#swal2-content > p').should('contain','Por favor, preencha corretamente.');
     })
 
     it('Validação campo senha e confimar senha',()=>{
@@ -127,8 +127,9 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
         cy.get('#password').type('Wino@2330')
         cy.get('#confirmedPassword').type('Wino@2024')
         cy.get('#continuar').click()
-        cy.get('#swal2-content')
-            .contains('As senhas informadas não coincidem. Por favor, verifique e tente novamente.');
+
+        cy.get('#swal2-content').should('contain','As senhas informadas não coincidem.');
+        cy.get('#swal2-content').should('contain','Por favor, verifique e tente novamente.');
     })
 
     it('Validação campo senha',()=>{
@@ -138,12 +139,7 @@ describe('Validações dos campos para o cadastramento de conta.', () => {
 
         cy.get('#password').type('123456')
         cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#swal2-content')
-            .contains('A senha deve conter, ao menos: uma letra maiúscula, uma letra minúscula, um número, um caractere especial e deve ter no mínimo 8 caracteres no total.');
+        cy.get('#swal2-content').should('contain','A senha deve conter, ao menos: uma letra maiúscula, uma letra minúscula, um número, um caractere especial e deve ter no mínimo 8 caracteres no total.');
     })
-
-
-    
-
 
 })    
