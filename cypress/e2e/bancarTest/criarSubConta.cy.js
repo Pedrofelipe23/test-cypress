@@ -1,4 +1,4 @@
-describe('Validações dos campos para o cadastramento de conta.', () => {
+describe('BanCar - criarSubConta: Validações dos campos para cadastramento de conta.', () => {
 
     beforeEach(() => {
         cy.visit('https://bancar.inf.br/pay/login/auth')
