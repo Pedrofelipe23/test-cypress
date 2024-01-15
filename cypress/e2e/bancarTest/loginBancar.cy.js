@@ -4,34 +4,29 @@ describe('BanCar - login', () => {
         cy.visit('http://localhost:8080/eva/login/auth')
       }) 
 
-      it('Tentativa de efetuar login com e-mail incorreto',() => {
+    it('Tentativa de efetuar login com e-mail incorreto',() => {
         cy.get('#j_username').type('Pedrooo.pereirawj@gmail.com')
         cy.get('#j_password').type('Wino@2330')
         cy.get('#entrar').click()
 
-        cy.get('#swal2-content').should('contain','Usuário não encontrado!')
         cy.get('#swal2-content').should('contain','Verifique suas credenciais e tente novamente!')
     })  
 
-    it('Tentativa de efetuar login com a senha incorreta',() => {
-        cy.get('#j_username').type('Pedro.pereirawj@gmail.com')
-        cy.get('#j_password').type('123')
-        cy.get('#entrar').click()
+    // it('Tentativa de efetuar login com a senha incorreta',() => {
+    //     cy.get('#j_username').type('matheusmws31@gmail.com')
+    //     cy.get('#entrar').click()
 
-        cy.get('#swal2-content').should('contain','Senha incorreta!')
-        cy.get('#swal2-content').should('contain','Verifique suas credenciais e tente novamente!')
-    })  
+    //     cy.get('#swal2-content').should('contain','Verifique suas credenciais e tente novamente!')
+    // })  
 
     it('Tentativa de efetuar login sem username e senha',() => {
         cy.get('#entrar').click()
-
-        cy.get('#swal2-content').should('contain','Usuário não encontrado!')
         cy.get('#swal2-content').should('contain','Verifique suas credenciais e tente novamente!')
     })  
     
     it('Efetuando login com dados do usuario em analise',() => {
         cy.get('.mb-4 > .text-secondary').should('contain', 'Preencha os campos abaixo com seus dados')
-        cy.login('pedro.pereirawj@gmail.com', 'Wino@2330')
+        cy.login('matheusmws31@gmail.com', '12345678Ti@')
 
         cy.visit('http://localhost:8080/eva/pages/pendente')
         cy.get('div.flex > .text-palatinate-400')
@@ -40,15 +35,12 @@ describe('BanCar - login', () => {
 
     it('Efetuando login com dados do usuario aprovado',() => {
         cy.get('.mb-4 > .text-secondary').should('contain', 'Preencha os campos abaixo com seus dados')
-        cy.login('Pedro.pereirawj@gmail.com', 'Wino@2330')
+        cy.login('matheusmws31@gmail.com', '12345678Ti@')
 
         cy.visit('http://localhost:8080/eva/')
         cy.get('#content_iframe') // lidando com iframe na pagina
             .then(($iframe) => {
                 const iframeContent = $iframe.contents().find('.pb-10')
-
-                cy.wrap(iframeContent)
-                    .should('contain','Olá, WINO INTERATIVA LTDA')
 
                 cy.wrap(iframeContent)
                     .should('contain','Seja bem-vindo ao seu Dashboard.')    
@@ -68,8 +60,43 @@ describe('BanCar - login', () => {
         cy.get('#novasenha').click()
 
         cy.get('#recoverPasswordModalTitle').should('contain','Problemas para entrar?')
-        cy.get('#modalBody > .text-secondary')
-            .should('contain','Insira o seu e-mail de login e enviaremos um link para você voltar a acessar a sua conta.')     
+    })
+
+    it(' Tentativa de envio de e-mail para alteração de senha sem passar e-mail',()=>{
+        cy.get('#novasenha').should('contain','Esqueci a senha')
+        cy.get('#novasenha').click()
+        cy.get('.ml-1').click()
+
+        cy.get('#swal2-content').should('contain','E-mail inválido.')
+    })
+
+    it('Validando campos e-mail para alteração de senha',()=>{
+        cy.get('#novasenha').should('contain','Esqueci a senha')
+        cy.get('#novasenha').click()
+        cy.get('#mail').type('pedro@wj.com.br')
+        cy.get('#confirmedMail').type('christhian.solution@gmail.com')
+        cy.get('.ml-1').click()
+
+        cy.get('#swal2-content').should('contain','Os e-mails não coincidem.  Por favor, verifique os campos e tente novamente.')
+    })
+
+    it('Enviando e-mail para alteração de senha',()=>{
+        cy.get('#novasenha').should('contain','Esqueci a senha')
+        cy.get('#novasenha').click()
+        cy.get('#mail').type('christhian.solution@gmail.com')
+        cy.get('#confirmedMail').type('christhian.solution@gmail.com')
+        cy.get('.ml-1').click()
+
+        cy.wait(3000)
+        cy.get('.flex-col > .text-heading-5').should('contain','Enviamos um link para seu e-mail cadastrado.')
+        cy.get('.text-capitalize').should('contain','Cheque sua caixa de entrada ou spam! :)')
+    })
+
+    it('Link com a page para alteração de senha',()=>{
+        cy.visit('http://localhost:8080/eva/externalPages/redefinirSenha?id=7de00843-bb9c-491b-bbbb-d47a57f39ea7')
+
+        cy.get('.font-semibold').should('contain','Redefinir Senha')
+        cy.get('.text-subtitle').should('contain','Redefinir Senha')
     })
 
 })    

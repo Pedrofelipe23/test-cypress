@@ -126,7 +126,7 @@ describe('BanCar - destinoTransferenciaPix', () => {
         cy.get('#swal2-content').should('contain', 'Por favor, preencha o campo corretamente!')
     })
 
-    it('Validação do campo quando achave PIX do tipo CNPJ ja estiver cadastrada',() => {
+    it('Validação do campo quando a chave PIX do tipo CNPJ já estiver cadastrada.',() => {
         cy.get('#pix').then(($select) => {
             cy.wrap($select).select('CNPJ', { force: true });
         });
@@ -141,6 +141,7 @@ describe('BanCar - destinoTransferenciaPix', () => {
         cy.get('.odd > :nth-child(2)').should('contain', '461 - ASAAS GESTAO FINANCEIRA INSTITUICAO DE PAGAMENTO S.A')
         cy.get('div.flex > .cursor-pointer').click()
     })
+
     /*
     Bugs encontrados: 
 
