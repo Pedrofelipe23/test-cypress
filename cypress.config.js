@@ -8,11 +8,8 @@ module.exports = defineConfig({
   
 
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-
-    },
-    //baseUrl: ''
+    baseUrl: 'http://localhost:8080/eva'
+    ,
     videosFolder: "cypress/videos",
     video: true
   },
