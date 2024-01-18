@@ -1,88 +1,83 @@
+import components from "../../support/elements/Components"
+
 describe('BanCar - criarSubConta: Validações dos campos para cadastramento de conta.', () => {
 
     beforeEach(() => {
-        cy.visit('https://bancar.inf.br/pay/login/auth')
+        cy.visit('/login/auth')
       }) 
 
 
-    it('Entrando na pagina cadastramento de conta',()=>{
-        cy.get('a.text-secondary').should('contain','Faça seu cadastro aqui')
-        cy.get('a.text-secondary').click()
-
-        cy.contains('Cadastrar conta').should('contain','Cadastrar conta')
-        cy.get('.text-secondary').should('contain','Preencha os campos abaixo com os dados da sua conta')
+    it('Entering the account registration page',()=>{
+        components.verifyTextExists('a.text-secondary','Faça seu cadastro aqui')
+        components.clickButton('a.text-secondary')
+        components.verifyTextExists('.justify-between > :nth-child(1) > .font-semibold','Cadastrar conta')
+        components.verifyTextExists('.justify-between > :nth-child(1) > .text-secondary','Preencha os campos abaixo com seus dados para criar a sua conta')
     })
     
 ///// verificando todas as validações dos campos para cadastramento de conta
 
-    it('Validação campo CNPJ com dados invalidos',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('11111111111111')
-        cy.get(':nth-child(2) > .hidden').click()
-
-        cy.get('#swal2-content > p').should('contain','CNPJ Inválido!');
-        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente!');
+    it('CNPJ field validation with invalid data',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','11111111111111')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.verifySwalMessage('CNPJ Inválido!');
+        components.verifySwalMessage('Por favor, preencha o campo corretamente!');
     })
 
-    it('Validação campo CNPJ sem retornar dados na api empresaAqui',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-
-        cy.get('#nome').should('not.be.disabled')
-        cy.get('#email').should('not.be.disabled')
-        cy.get('#password').should('not.be.disabled')
-        cy.get('#confirmedPassword').should('not.be.disabled')
-        cy.get('#mobilePhone').should('not.be.disabled')
-        cy.get('#cep').should('not.be.disabled')
-        cy.get('#endereco').should('not.be.disabled')
-        cy.get('#bairro').should('not.be.disabled')
-        cy.get('#numero').should('not.be.disabled')
+    it('CNPJ field validation without returning data in the api empresaAqui',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.verifyTagNotBeDisable('#nome')
+        components.verifyTagNotBeDisable('#email')
+        components.verifyTagNotBeDisable('#password')
+        components.verifyTagNotBeDisable('#confirmedPassword')
+        components.verifyTagNotBeDisable('#mobilePhone')
+        components.verifyTagNotBeDisable('#cep')
+        components.verifyTagNotBeDisable('#endereco')
+        components.verifyTagNotBeDisable('#bairro')
+        components.verifyTagNotBeDisable('#numero')
+        components.verifyTagNotBeDisable('#cidade')
     })
 
-    it('Retorno da api empresaAqui apos request no campo CNPJ',()=>{
-        cy.get('a.text-secondary').click() 
-        cy.get('#cnpj').type('05495002000112')
-        cy.get(':nth-child(2) > .hidden').click()
+    it('Return true api empresaAqui after request in the CNPJ field',()=>{
+        components.clickButton('a.text-secondary') 
+        components.inputText('#cnpj','05495002000112')
+        components.clickButton('.p-1 > .text-palatinate-400')
         cy.wait(2000)
-        cy.get('#nome').should('have.value','WINO INTERATIVA LTDA')
-        cy.get('#cep').should('have.value','36660000')
-        cy.get('#endereco').should('have.value','PRACA CORONEL BREVES')
-        cy.get('#bairro').should('have.value','SAO JOSE')
-        cy.get('#numero').should('have.value','86')
+        components.checkHaveThisValue('#nome','WINO INTERATIVA LTDA')
+        components.checkHaveThisValue('#cep','36660000')
+        components.checkHaveThisValue('#endereco','PRACA CORONEL BREVES')
+        components.checkHaveThisValue('#bairro','SAO JOSE')
+        components.checkHaveThisValue('#numero','86')
     })
 
-    it('Validação campo E-mail de Login',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#email').type('abc@123')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content > p').should('contain','E-mail Inválido!');
-        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente');
+    it('Login Email field validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#email','abc@123')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('E-mail Inválido!');
+        components.verifySwalMessage('Por favor, preencha o campo corretamente');
     })
 
-    it('Validação campo Telefone Fixo',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#phone').type('99999')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content > p')
-            .should('contain','Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
+    it('Landline Telephone field validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#phone','99999')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
     })
 
-    it('Validação campo Telefone Celular',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#mobilePhone').type('99999')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content > p')
-            .should('contain','Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
+    it('Cell phone field validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#phone','99999')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Número Inválido!Por favor, digite o seu DDD e número de contato corretamente!');
     })
 
     // it('Validação campo Data de Nascimento',()=>{
@@ -93,53 +88,55 @@ describe('BanCar - criarSubConta: Validações dos campos para cadastramento de 
     //         .contains('Data Inválida!Por favor, digite uma data válida!');
     // })
 
-    it('Validação campo CEP',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#cep').type('12345678')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content > p').should('contain','CEP Inválido!');
-        cy.get('#swal2-content > p').should('contain','Por favor, preencha o campo corretamente!');
+    it('CEP field validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#cep','12345678')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('CEP Inválido!')
+        components.verifySwalMessage('Por favor, preencha o campo corretamente!')
     })
 
-    it('Validação de mascara campo CEP ',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#cep').type('12345')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content > p').should('contain','O CEP deve conter 8 dígitos.');
-        cy.get('#swal2-content > p').should('contain','Por favor, preencha corretamente.');
+    it('CEP field mask validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#cep','12345')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('O CEP deve conter 8 dígitos.')
+        components.verifySwalMessage('Por favor, preencha corretamente.')
     })
 
-    it('Validação campo senha e confimar senha',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
-
-        cy.get('#tipoConta').then(($select) => {
-            cy.wrap($select).select('Individual', { force: true });
-        });
-
-        cy.get('#password').type('Wino@2330')
-        cy.get('#confirmedPassword').type('Wino@2024')
-        cy.get('#continuar').click()
-
-        cy.get('#swal2-content').should('contain','As senhas informadas não coincidem.');
-        cy.get('#swal2-content').should('contain','Por favor, verifique e tente novamente.');
+    it('Validate password field and confirm password',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.selectFieldValue('#tipoConta','Individual')
+        components.inputText('#password','Wino@2330')
+        components.inputText('#confirmedPassword','Wino@2024')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('As senhas informadas não coincidem.');
+        components.verifySwalMessage('Por favor, verifique e tente novamente.');
     })
 
-    it('Validação campo senha',()=>{
-        cy.get('a.text-secondary').click()
-        cy.get('#cnpj').type('84595238000105')
-        cy.get(':nth-child(2) > .hidden').click()
+    it('Password field validation',()=>{
+        components.clickButton('a.text-secondary')
+        components.inputText('#cnpj','84595238000105')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.inputText('#password','123456')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.verifySwalMessage('A senha deve conter, ao menos: uma letra maiúscula, uma letra minúscula, um número, um caractere especial e deve ter no mínimo 8 caracteres no total.');
+    })
 
-        cy.get('#password').type('123456')
-        cy.get(':nth-child(2) > .hidden').click()
-        cy.get('#swal2-content').should('contain','A senha deve conter, ao menos: uma letra maiúscula, uma letra minúscula, um número, um caractere especial e deve ter no mínimo 8 caracteres no total.');
+    it('Validating terms of use and conditions',()=>{
+        components.clickButton('a.text-secondary')
+        components.verifyTextExists('.p-1 > .flex','Li e estou de acordo')
+        components.clickButton('.p-1 > .text-palatinate-400')
+        components.verifyTextExists('#termsOfUseTitle','Termos de Uso')
+        components.verifyTextExists('.relative > .text-heading-4','Bem-vindo(a) ao Bancar!')
+        components.verifyTextExists('.m-4 > .relative > :nth-child(2)','Estes Termos de Uso regem o uso dos nossos serviços, então, por favor, leia atentamente.')
+        components.verifyTextExists('.mb-8.underline','Ao acessar ou utilizar o Bancar, você concorda com estes termos.')
     })
 
 })    
