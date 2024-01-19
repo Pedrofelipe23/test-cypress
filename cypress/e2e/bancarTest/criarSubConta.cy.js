@@ -6,7 +6,6 @@ describe('BanCar - criarSubConta: Validações dos campos para cadastramento de 
         cy.visit('/login/auth')
       }) 
 
-
     it('Entering the account registration page',()=>{
         components.verifyTextExists('a.text-secondary','Faça seu cadastro aqui')
         components.clickButton('a.text-secondary')

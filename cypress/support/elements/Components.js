@@ -9,6 +9,10 @@ class components{
         cy.get('#swal2-content').should('contain', message)
     }
 
+    clickButtonSwalConfirm(){
+        cy.get('.swal2-confirm').click()
+    }
+
     verifyTextExists(tag,text){
         cy.get(tag).should('contain',text)
     }
@@ -31,15 +35,29 @@ class components{
         cy.get(tag).type(text)
     }
 
-    iframePage(tagContent,textContent){
-        cy.get('#content_iframe') // lidando com iframe na pagina
-            .then(($iframe) => {
-                const iframeContent = $iframe.contents().find(tagContent)
-
-                cy.wrap(iframeContent)
-                    .should('contain',textContent)
-        })
+    clearInputText(tag){
+        cy.get(tag).clear()
     }
+
+    iframeContent(tagContent) {
+        return cy.get('#content_iframe').then(($iframe) => {
+          return cy.wrap($iframe.contents().find(tagContent));
+        });
+    }
+
+    iframePageContent(tagContent,textContent){
+        this.iframeContent(tagContent).should('contain',textContent)
+    }
+
+    interactInsideTheIframe(tagContent,text){
+        this.iframeContent(tagContent).type(text)
+    }
+
+    clickOnFieldsInsideIframe(tagContent){
+        this.iframeContent(tagContent).click()
+    }
+
+
     
 }
 export default new components();

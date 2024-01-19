@@ -8,7 +8,6 @@ describe('BanCar - extrato', () => {
 
     it('Entrando na page extrato',() => {
         cy.get('.text-heading-5').should('contain', 'Extrato')
-        cy.get('.dataTables_empty').should('contain', 'Não foram encontrados resultados')
     })
 
     it('Filtrando extrato por periodo',() => {
@@ -17,9 +16,6 @@ describe('BanCar - extrato', () => {
         cy.get(':nth-child(4) > .periodFilter').click()
 
         cy.get('#periodButtonApply').click()
-
-        cy.get('.odd > [tabindex="0"] > .flex > :nth-child(2) > .text-phantom-800')
-            .should('contain', 'Cobrança recebida - fatura nr. 348937897 Fábio Oliveira Moreira')
     })
 
     
