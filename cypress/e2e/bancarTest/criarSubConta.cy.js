@@ -133,9 +133,9 @@ describe('BanCar - criarSubConta: Validações dos campos para cadastramento de 
         components.verifyTextExists('.p-1 > .flex','Li e estou de acordo')
         components.clickButton('.p-1 > .text-palatinate-400')
         components.verifyTextExists('#termsOfUseTitle','Termos de Uso')
-        components.verifyTextExists('.relative > .text-heading-4','Bem-vindo(a) ao Bancar!')
-        components.verifyTextExists('.m-4 > .relative > :nth-child(2)','Estes Termos de Uso regem o uso dos nossos serviços, então, por favor, leia atentamente.')
-        components.verifyTextExists('.mb-8.underline','Ao acessar ou utilizar o Bancar, você concorda com estes termos.')
+        components.verifyTextExists('.m-4 > .relative','Bem-vindo(a) ao Bancar!')
+        components.verifyTextExists('.m-4 > .relative > :nth-child(2)','Os Termos de Uso e as Políticas de Privacidade regem o uso dos nossos serviços, então, por favor, leia atentamente.')
+        components.clickButton('#acceptTerm')
     })
 
 })    

@@ -33,7 +33,7 @@ describe('BanCar - login page', () => {
 
     it('Logging in with approved user data',() => {
         cy.login('matheusmws31@gmail.com','12345678Ti@')
-        Components.iframePage('.pb-10','Seja bem-vindo ao seu Dashboard.')
+        Components.iframePageContent('.pb-10','Seja bem-vindo ao seu Dashboard.')
     })
 
     it('Entering the account registration page',()=>{

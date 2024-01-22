@@ -1,5 +1,8 @@
 
-class components{
+class Components{
+
+    constructor(){
+    }
 
     clickButton(tagButton){
         cy.get(tagButton).click()
@@ -57,7 +60,12 @@ class components{
         this.iframeContent(tagContent).click()
     }
 
+    selectValueWithinTheCombo(tagContent,tagSelect,value){
+        this.iframeContent(tagContent).selectFieldValue(tagSelect,value)
+    }
 
-    
+
 }
-export default new components();
+
+const components = new Components();
+export default components;

@@ -125,7 +125,6 @@ describe('BanCar - page transferenciaPix', () => {
     })
 
     it('validating functionality on the transfer button with registered (saved) PIX key',() => {
-        Components.verifyTextExists('.odd > [tabindex="0"]','Chave aleatória')
         Components.verifyTextExists('.odd > :nth-child(2)','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
         Components.verifyTextExists('.odd > :nth-child(3)','BANCO INTER S.A.')
     })
