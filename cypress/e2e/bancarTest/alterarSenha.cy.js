@@ -10,6 +10,7 @@ describe('BanCar - alterarSenha',() => {
 
     it('page to change your password', () => {
         components.verifyTextExists('.text-subtitle','A senha deve conter, ao menos: uma letra maiúscula, uma letra minúscula, um número, um caractere especial e deve ter no mínimo 8 caracteres no total.')
+        components.screenshot('page to change your password')
     });
 
     it('Trying to change password without entering current password', () => {
@@ -49,8 +50,5 @@ describe('BanCar - alterarSenha',() => {
         components.clickButton('#redefinirSenha')
         components.verifySwalMessage('Senha alterada com sucesso!  Por favor, entre com sua nova senha.')
     });
-
-
-
 
 })

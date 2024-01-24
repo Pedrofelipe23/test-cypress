@@ -62,7 +62,7 @@ describe('BanCar - login page', () => {
         Components.inputText('#mail','pedro.pereirawj@gmail.com')
         Components.clickButton('.ml-2')
         cy.wait(3000)
-        Components.verifyTextExists('.flex-col > .text-heading-5','Enviamos um link para seu e-mail cadastrado.')
+        Components.verifyTextExists('.flex-col > .text-heading-5','Enviamos um link para "pedro.pereirawj@gmail.com".')
         Components.verifyTextExists('.text-capitalize','Cheque sua caixa de entrada ou spam! :)')
     })
 

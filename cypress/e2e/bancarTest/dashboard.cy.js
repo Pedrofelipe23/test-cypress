@@ -15,7 +15,7 @@ describe('BanCar - dashboard', () => {
     it('Filter data from the activity table in the search field',() => {
         components.iframePageContent('#table_filter','Atividades')
         components.clickOnFieldsInsideIframe('#periodFilter')
-        components.clickOnFieldsInsideIframe('#15d')
+        components.clickOnFieldsInsideIframe('#30d')
         components.clickOnFieldsInsideIframe('#periodButtonApply')
         cy.wait(3000)
         components.interactInsideTheIframe('#table_filter > label > input[type=search]','Vistoria de reboque')
@@ -38,11 +38,20 @@ describe('BanCar - dashboard', () => {
         components.clickOnFieldsInsideIframe('#dashboard > div > section > div > div > div > div:nth-child(5) > a > button')
     });
 
-    it('Accessing the FAQ page', () => {
-        components.iframePageContent('#dashboard > div > section > div > div > div > div:nth-child(6) > a > button > span','FAQ')
+    it('Accessing the Taxas page', () => {
+        components.iframePageContent('#dashboard > div > section > div > div > div > div:nth-child(6) > a > button > span','Taxas')
         components.clickOnFieldsInsideIframe('#dashboard > div > section > div > div > div > div:nth-child(6) > a > button')
     });
 
+    it('Accessing the FAQ page', () => {
+        components.iframePageContent('#dashboard > div > section > div > div > div > div:nth-child(7) > a > button > span','FAQ')
+        components.clickOnFieldsInsideIframe('#dashboard > div > section > div > div > div > div:nth-child(7) > a > button')
+    });
+
+    it('Accessing the page to make PIX transfers', () => {
+        components.iframePageContent('#dashboard > div > section > div > div > div.bg-surface.mb-6.rounded-lg.p-4.shadow-sm > div:nth-child(4) > a','Transferir')
+        components.clickOnFieldsInsideIframe('#dashboard > div > section > div > div > div.bg-surface.mb-6.rounded-lg.p-4.shadow-sm > div:nth-child(4) > a')
+    });
 
     
 

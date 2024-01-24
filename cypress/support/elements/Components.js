@@ -64,6 +64,10 @@ class Components{
         this.iframeContent(tagContent).selectFieldValue(tagSelect,value)
     }
 
+    screenshot(fileName){
+        cy.screenshot(fileName, { capture: 'fullPage' });
+    }
+
 
 }
 

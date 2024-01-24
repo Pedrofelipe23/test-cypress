@@ -1,4 +1,4 @@
-import Components from "../../support/elements/Components"
+import components from "../../support/elements/Components"
 
 describe('BanCar - page transferenciaPix', () => {
 
@@ -9,61 +9,69 @@ describe('BanCar - page transferenciaPix', () => {
       }) 
 
     it('Entering the transferenciaPix page',() => {
-        Components.verifyTextExists('#keysDiv > .text-heading-5','Selecione a Chave PIX')
-        Components.verifyTextExists('section.flex > .flex-col > .font-semibold','Para quem você quer transferir?')
+        components.verifyTextExists('#keysDiv > .text-heading-5','Selecione a Chave PIX')
+        components.verifyTextExists('section.flex > .flex-col > .font-semibold','Para quem você quer transferir?')
+        components.screenshot('Entering the transferenciaPix page')
     })
 
     it('Trying to send PIX without selecting a key type',() => {
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('Por favor, selecione o tipo da chave pix para prosseguir.')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Por favor, selecione o tipo da chave pix para prosseguir.')
+        components.screenshot('Trying to send PIX without selecting a key type')
     })
 
     it('Validation of the field when it is an email-type PIX key',() => {
-        Components.selectFieldValue('#pix','E-mail')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('Por favor, insira a chave pix do tipo e-mail para prosseguir.')
+        components.selectFieldValue('#pix','E-mail')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Por favor, insira a chave pix do tipo e-mail para prosseguir.')
+        components.screenshot('Validation of the field when it is an email-type PIX key')
     })
 
     it('Validation if email type PIX key exists',() => {
-        Components.selectFieldValue('#pix','E-mail')
-        Components.inputText('#chaveEmail','pedro@wj.com')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('A chave está correta?')
-        Components.verifySwalMessage('E-mail: pedro@wj.com')
-        Components.clickButtonSwalConfirm()
+        components.selectFieldValue('#pix','E-mail')
+        components.inputText('#chaveEmail','pedro@wj.com')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('A chave está correta?')
+        components.verifySwalMessage('E-mail: pedro@wj.com')
+        components.clickButtonSwalConfirm()
+        components.screenshot('Validation if email type PIX key exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao EMAIL informado.')
     })
 
     it('Validation of the field when it is of the email type',() => {
-        Components.selectFieldValue('#pix','E-mail')
-        Components.inputText('#chaveEmail','pedro123')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('E-mail Inválido!')
-        Components.verifySwalMessage('Por favor, preencha o campo corretamente!')
+        components.selectFieldValue('#pix','E-mail')
+        components.inputText('#chaveEmail','pedro123')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('E-mail Inválido!')
+        components.verifySwalMessage('Por favor, preencha o campo corretamente!')
+        components.screenshot('Validation of the field when it is of the email type')
     })
 
     it('Validation of the field when it is a PIX key of the Cellular type',() => {
-        Components.selectFieldValue('#pix','Celular')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('Por favor, insira a chave pix do tipo celular para prosseguir.')
+        components.selectFieldValue('#pix','Celular')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Por favor, insira a chave pix do tipo celular para prosseguir.')
+        components.screenshot('Validation of the field when it is a PIX key of the Cellular type')
     })
 
     it('Validation if PIX key of type Cellphone exists',() => {
-        Components.selectFieldValue('#pix','Celular')
-        Components.inputText('#chaveCelular','21999999999')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('A chave está correta?')
-        Components.verifySwalMessage('Celular: (21) 99999-9999')
-        Components.clickButtonSwalConfirm()
+        components.selectFieldValue('#pix','Celular')
+        components.inputText('#chaveCelular','21999999999')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('A chave está correta?')
+        components.verifySwalMessage('Celular: (21) 99999-9999')
+        components.clickButtonSwalConfirm()
+        components.screenshot('Validation if PIX key of type Cellphone exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao CELULAR informado.')
     })
 
     it('Validation of the field when it is of the Cellular type',() => {
-        Components.selectFieldValue('#pix','Celular')
-        Components.inputText('#chaveCelular','12345')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('Número Inválido!')
-        Components.verifySwalMessage('Por favor, digite o seu DDD e número de contato corretamente!')
+        components.selectFieldValue('#pix','Celular')
+        components.inputText('#chaveCelular','12345')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Número Inválido!')
+        components.verifySwalMessage('Por favor, digite o seu DDD e número de contato corretamente!')
+        components.screenshot('Validation of the field when it is of the Cellular type')
     })
 
     // it('Field validation when it is a PIX key of the CPF type',() => {
@@ -93,82 +101,80 @@ describe('BanCar - page transferenciaPix', () => {
     // })
 
     it('Validation of the field when it is a PIX key of the CNPJ type',() => {
-        Components.selectFieldValue('#pix','CNPJ')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('Por favor, insira a chave pix do tipo CNPJ para prosseguir.')
+        components.selectFieldValue('#pix','CNPJ')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('Por favor, insira a chave pix do tipo CNPJ para prosseguir.')
+        components.screenshot('Validation of the field when it is a PIX key of the CNPJ type')
     })
 
     it('Validation if PIX key of the CNPJ type exists',() => {
-        Components.selectFieldValue('#pix','CNPJ')
-        Components.inputText('#chaveCnpj','01051944000150')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('A chave está correta?')
-        Components.verifySwalMessage('CNPJ: 01.051.944/0001-50')
-        Components.clickButtonSwalConfirm()
+        components.selectFieldValue('#pix','CNPJ')
+        components.inputText('#chaveCnpj','01051944000150')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('A chave está correta?')
+        components.verifySwalMessage('CNPJ: 01.051.944/0001-50')
+        components.clickButtonSwalConfirm()
+        components.screenshot('Validation if PIX key of the CNPJ type exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao CNPJ informado.')
     })
 
     it('Validation of the field when it is of the CNPJ type',() => {
-        Components.selectFieldValue('#pix','CNPJ')
-        Components.inputText('#chaveCnpj','0105')
-        Components.clickButton('#continuar')
-        Components.verifySwalMessage('CNPJ Inválido!')
-        Components.verifySwalMessage('Por favor, preencha o campo corretamente!')
+        components.selectFieldValue('#pix','CNPJ')
+        components.inputText('#chaveCnpj','0105')
+        components.clickButton('#continuar')
+        components.verifySwalMessage('CNPJ Inválido!')
+        components.verifySwalMessage('Por favor, preencha o campo corretamente!')
+        components.screenshot('Validation of the field when it is of the CNPJ type')
     })
 
     it('Field validation when the CNPJ type PIX key is already registered.',() => {
-        Components.selectFieldValue('#pix','CNPJ')
-        Components.inputText('#chaveCnpj','30767656000103')
-        Components.clickButton('#continuar')
-        Components.clickButtonSwalConfirm()
-        Components.verifySwalMessage('Esta chave já foi cadastrada, por favor consulte na lista abaixo ou procure o suporte.')
+        components.selectFieldValue('#pix','CNPJ')
+        components.inputText('#chaveCnpj','30767656000103')
+        components.clickButton('#continuar')
+        components.clickButtonSwalConfirm()
+        components.verifySwalMessage('Esta chave já foi cadastrada, por favor consulte na lista abaixo ou procure o suporte.')
+        components.screenshot('Field validation when the CNPJ type PIX key is already registered')
     })
 
     it('validating functionality on the transfer button with registered (saved) PIX key',() => {
-        Components.verifyTextExists('.odd > :nth-child(2)','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
-        Components.verifyTextExists('.odd > :nth-child(3)','BANCO INTER S.A.')
+        components.verifyTextExists('.odd > :nth-child(2)','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
+        components.verifyTextExists('.odd > :nth-child(3)','BANCO INTER S.A.')
+        components.screenshot('validating functionality on the transfer button with registered (saved) PIX key')
     })
 
     it('Enter the transfer page', () => {
-        Components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
-        Components.verifyTextExists('#valueDiv > .text-heading-5','Insira o Valor Desejado')
+        components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
+        components.verifyTextExists('#valueDiv > .text-heading-5','Insira o Valor Desejado')
+        components.screenshot('Enter the transfer page')
     });
 
     it('Try to transfer zero value', () => {
-        Components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
-        Components.verifyTextExists('#valueDiv > .bg-surface > .flex-col > .font-semibold','Quanto você quer transferir?')
-        Components.clearInputText('#valor')
-        Components.inputText('#valor','0')
-        Components.clickButton('#continuar2')
-        Components.verifySwalMessage('Por favor, insira um valor válido.')
+        components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
+        components.verifyTextExists('#valueDiv > .bg-surface > .flex-col > .font-semibold','Quanto você quer transferir?')
+        components.clearInputText('#valor')
+        components.inputText('#valor','0')
+        components.clickButton('#continuar2')
+        components.verifySwalMessage('Por favor, insira um valor válido.')
+        components.screenshot('Try to transfer zero value')
     });
 
     it('Try to transfer cent value with one digit', () => {
-        Components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
-        Components.clearInputText('#valor')
-        Components.inputText('#valorCentavos','0')
-        Components.clickButton('#continuar2')
-        Components.verifySwalMessage('Por favor, informe o valor dos centavos com dois dígitos.')
+        components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
+        components.clearInputText('#valor')
+        components.inputText('#valorCentavos','0')
+        components.clickButton('#continuar2')
+        components.verifySwalMessage('Por favor, informe o valor dos centavos com dois dígitos.')
+        components.screenshot('Try to transfer cent value with one digit')
     });
 
     it('Trying to transfer an amount greater than the account balance', () => {
-        Components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
-        Components.clearInputText('#valor')
-        Components.inputText('#valorCentavos','01')
-        Components.clickButton('#continuar2')
-        Components.verifySwalMessage('O valor informado excede o saldo da conta.  Por favor, insira um valor válido antes de continuar.')
+        components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
+        components.clearInputText('#valor')
+        components.inputText('#valorCentavos','01')
+        components.clickButton('#continuar2')
+        components.verifySwalMessage('O valor informado excede o saldo da conta.  Por favor, insira um valor válido antes de continuar.')
+        components.screenshot('Trying to transfer an amount greater than the account balance')
     });
 
-
-    /*
-    Bugs encontrados: 
-
-        Ao tentar validar CNPJ ja cadastrado menssagem de erro nao está sendo exibida na tela.
-        'Esta chave já foi cadastrada, por favor consulte na lista abaixo ou procure o suporte.'
-
-         Ajustar as mensagens de dentro do swal - colocar "e-mail" 
-         colocar todos os "PIX" em maiúsculo  
-
-    */
 
 })    
