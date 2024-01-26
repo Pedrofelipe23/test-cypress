@@ -11,20 +11,23 @@ describe('BanCar - page transferenciaPix', () => {
     it('Entering the transferenciaPix page',() => {
         components.verifyTextExists('#keysDiv > .text-heading-5','Selecione a Chave PIX')
         components.verifyTextExists('section.flex > .flex-col > .font-semibold','Para quem você quer transferir?')
-        components.screenshot('Entering the transferenciaPix page')
+        cy.wait(2000)
+        //components.screenshot('Entering the transferenciaPix page')
     })
 
     it('Trying to send PIX without selecting a key type',() => {
         components.clickButton('#continuar')
         components.verifySwalMessage('Por favor, selecione o tipo da chave pix para prosseguir.')
-        components.screenshot('Trying to send PIX without selecting a key type')
+        cy.wait(2000)
+        //components.screenshot('Trying to send PIX without selecting a key type')
     })
 
     it('Validation of the field when it is an email-type PIX key',() => {
         components.selectFieldValue('#pix','E-mail')
         components.clickButton('#continuar')
         components.verifySwalMessage('Por favor, insira a chave pix do tipo e-mail para prosseguir.')
-        components.screenshot('Validation of the field when it is an email-type PIX key')
+        cy.wait(2000)
+        //components.screenshot('Validation of the field when it is an email-type PIX key')
     })
 
     it('Validation if email type PIX key exists',() => {
@@ -34,7 +37,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.verifySwalMessage('A chave está correta?')
         components.verifySwalMessage('E-mail: pedro@wj.com')
         components.clickButtonSwalConfirm()
-        components.screenshot('Validation if email type PIX key exists')
+        cy.wait(2000)
+        //components.screenshot('Validation if email type PIX key exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao EMAIL informado.')
     })
 
@@ -44,14 +48,16 @@ describe('BanCar - page transferenciaPix', () => {
         components.clickButton('#continuar')
         components.verifySwalMessage('E-mail Inválido!')
         components.verifySwalMessage('Por favor, preencha o campo corretamente!')
-        components.screenshot('Validation of the field when it is of the email type')
+        cy.wait(2000)
+        //components.screenshot('Validation of the field when it is of the email type')
     })
 
     it('Validation of the field when it is a PIX key of the Cellular type',() => {
         components.selectFieldValue('#pix','Celular')
         components.clickButton('#continuar')
         components.verifySwalMessage('Por favor, insira a chave pix do tipo celular para prosseguir.')
-        components.screenshot('Validation of the field when it is a PIX key of the Cellular type')
+        cy.wait(2000)
+        //components.screenshot('Validation of the field when it is a PIX key of the Cellular type')
     })
 
     it('Validation if PIX key of type Cellphone exists',() => {
@@ -61,7 +67,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.verifySwalMessage('A chave está correta?')
         components.verifySwalMessage('Celular: (21) 99999-9999')
         components.clickButtonSwalConfirm()
-        components.screenshot('Validation if PIX key of type Cellphone exists')
+        cy.wait(2000)
+        //components.screenshot('Validation if PIX key of type Cellphone exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao CELULAR informado.')
     })
 
@@ -71,7 +78,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.clickButton('#continuar')
         components.verifySwalMessage('Número Inválido!')
         components.verifySwalMessage('Por favor, digite o seu DDD e número de contato corretamente!')
-        components.screenshot('Validation of the field when it is of the Cellular type')
+        cy.wait(2000)
+        //components.screenshot('Validation of the field when it is of the Cellular type')
     })
 
     // it('Field validation when it is a PIX key of the CPF type',() => {
@@ -104,7 +112,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.selectFieldValue('#pix','CNPJ')
         components.clickButton('#continuar')
         components.verifySwalMessage('Por favor, insira a chave pix do tipo CNPJ para prosseguir.')
-        components.screenshot('Validation of the field when it is a PIX key of the CNPJ type')
+        cy.wait(2000)
+       // components.screenshot('Validation of the field when it is a PIX key of the CNPJ type')
     })
 
     it('Validation if PIX key of the CNPJ type exists',() => {
@@ -114,7 +123,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.verifySwalMessage('A chave está correta?')
         components.verifySwalMessage('CNPJ: 01.051.944/0001-50')
         components.clickButtonSwalConfirm()
-        components.screenshot('Validation if PIX key of the CNPJ type exists')
+        cy.wait(2000)
+        //components.screenshot('Validation if PIX key of the CNPJ type exists')
         //Components.verifySwalMessage('A chave informada não existe ou não pertence ao CNPJ informado.')
     })
 
@@ -124,7 +134,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.clickButton('#continuar')
         components.verifySwalMessage('CNPJ Inválido!')
         components.verifySwalMessage('Por favor, preencha o campo corretamente!')
-        components.screenshot('Validation of the field when it is of the CNPJ type')
+        cy.wait(2000)
+        //components.screenshot('Validation of the field when it is of the CNPJ type')
     })
 
     it('Field validation when the CNPJ type PIX key is already registered.',() => {
@@ -133,19 +144,22 @@ describe('BanCar - page transferenciaPix', () => {
         components.clickButton('#continuar')
         components.clickButtonSwalConfirm()
         components.verifySwalMessage('Esta chave já foi cadastrada, por favor consulte na lista abaixo ou procure o suporte.')
-        components.screenshot('Field validation when the CNPJ type PIX key is already registered')
+        cy.wait(2000)
+        //components.screenshot('Field validation when the CNPJ type PIX key is already registered')
     })
 
     it('validating functionality on the transfer button with registered (saved) PIX key',() => {
         components.verifyTextExists('.odd > :nth-child(2)','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
         components.verifyTextExists('.odd > :nth-child(3)','BANCO INTER S.A.')
-        components.screenshot('validating functionality on the transfer button with registered (saved) PIX key')
+        cy.wait(2000)
+        //components.screenshot('validating functionality on the transfer button with registered (saved) PIX key')
     })
 
     it('Enter the transfer page', () => {
         components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
         components.verifyTextExists('#valueDiv > .text-heading-5','Insira o Valor Desejado')
-        components.screenshot('Enter the transfer page')
+        cy.wait(2000)
+        //components.screenshot('Enter the transfer page')
     });
 
     it('Try to transfer zero value', () => {
@@ -155,7 +169,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.inputText('#valor','0')
         components.clickButton('#continuar2')
         components.verifySwalMessage('Por favor, insira um valor válido.')
-        components.screenshot('Try to transfer zero value')
+        cy.wait(2000)
+        //components.screenshot('Try to transfer zero value')
     });
 
     it('Try to transfer cent value with one digit', () => {
@@ -164,7 +179,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.inputText('#valorCentavos','0')
         components.clickButton('#continuar2')
         components.verifySwalMessage('Por favor, informe o valor dos centavos com dois dígitos.')
-        components.screenshot('Try to transfer cent value with one digit')
+        cy.wait(2000)
+        //components.screenshot('Try to transfer cent value with one digit')
     });
 
     it('Trying to transfer an amount greater than the account balance', () => {
@@ -173,7 +189,8 @@ describe('BanCar - page transferenciaPix', () => {
         components.inputText('#valorCentavos','01')
         components.clickButton('#continuar2')
         components.verifySwalMessage('O valor informado excede o saldo da conta.  Por favor, insira um valor válido antes de continuar.')
-        components.screenshot('Trying to transfer an amount greater than the account balance')
+        cy.wait(2000)
+        //components.screenshot('Trying to transfer an amount greater than the account balance')
     });
 
 

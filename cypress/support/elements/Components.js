@@ -8,6 +8,10 @@ class Components{
         cy.get(tagButton).click()
     }
 
+    clickContainsTextButton(text){
+        cy.contains(text).click();
+    }
+
     verifySwalMessage(message){
         cy.get('#swal2-content').should('contain', message)
     }
