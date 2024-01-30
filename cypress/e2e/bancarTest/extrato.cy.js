@@ -1,23 +1,22 @@
+import components from "../../support/elements/Components"
 describe('BanCar - extrato', () => {
 
     beforeEach(() => {
-        cy.visit('http://localhost:8080/eva/pages/extrato')
-        cy.get('.mb-4 > .text-secondary').should('contain', 'Preencha os campos abaixo com seus dados')
+        cy.visit('/pages/extrato')
         cy.login('matheusmws31@gmail.com', '12345678Ti@')
-      }) 
+    }) 
 
-    it('Entrando na page extrato',() => {
-        cy.get('.text-heading-5').should('contain', 'Extrato')
+    it('Accessing the extract page',() => {
+        components.verifyTextExists('.text-heading-5','Extrato')
+        cy.wait(2000)
     })
 
-    it('Filtrando extrato por periodo',() => {
-        cy.get('#periodFilter').click()
-        cy.get(':nth-child(4) > .periodFilter').should('contain', 'Últimos 15 dias')
-        cy.get(':nth-child(4) > .periodFilter').click()
-
-        cy.get('#periodButtonApply').click()
+    it('Filtering statement by period',() => {
+        components.clickButton('#periodFilter')
+        components.verifyTextExists(':nth-child(4) > .periodFilter','Últimos 15 dias')
+        components.clickButton(':nth-child(4) > .periodFilter')
+        components.clickButton('#periodButtonApply')
+        cy.wait(2000)
     })
-
-    
 
 })    

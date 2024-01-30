@@ -26,7 +26,7 @@ describe('BanCar - login page', () => {
         login.clickLoginButton()
         Components.verifySwalMessage('Verifique suas credenciais e tente novamente!')
         cy.wait(2000)
-    })  
+    })
     
     it('Logging in with user data under analysis',() => {
         cy.login('matheusmws31@gmail.com','12345678Ti@')
