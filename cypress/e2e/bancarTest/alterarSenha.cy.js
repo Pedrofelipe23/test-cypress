@@ -4,6 +4,7 @@ import components from "../../support/elements/Components"
 describe('BanCar - alterarSenha',() => {    
 
     beforeEach(() =>{
+        components.setViewportTablet()
         cy.visit('/pages/alterarSenha')
         cy.login('matheusmws31@gmail.com', '12345678Ti@')
     })

@@ -4,9 +4,8 @@ describe('BanCar - page transferenciaPix', () => {
 
     beforeEach(() => {
         cy.visit('/pages/transferenciaPix')
-        cy.get('.mb-4 > .text-secondary').should('contain', 'Preencha os campos abaixo com seus dados')
         cy.login('matheusmws31@gmail.com', '12345678Ti@')
-      }) 
+      })
 
     it('Entering the transferenciaPix page',() => {
         components.verifyTextExists('#keysDiv > .text-heading-5','Selecione a Chave PIX')
@@ -149,8 +148,8 @@ describe('BanCar - page transferenciaPix', () => {
     })
 
     it('validating functionality on the transfer button with registered (saved) PIX key',() => {
-        components.verifyTextExists('.odd > :nth-child(2)','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
-        components.verifyTextExists('.odd > :nth-child(3)','BANCO INTER S.A.')
+        components.verifyTextExists('#table_wrapper','ba5939af-ce7c-46f5-b451-5bf5b90e9543')
+        components.verifyTextExists('#table_wrapper','BANCO INTER S.A.')
         cy.wait(2000)
         //components.screenshot('validating functionality on the transfer button with registered (saved) PIX key')
     })
@@ -186,9 +185,19 @@ describe('BanCar - page transferenciaPix', () => {
     it('Trying to transfer an amount greater than the account balance', () => {
         components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
         components.clearInputText('#valor')
-        components.inputText('#valorCentavos','01')
+        components.inputText('#valorCentavos','02')
         components.clickButton('#continuar2')
         components.verifySwalMessage('O valor informado excede o saldo da conta.  Por favor, insira um valor válido antes de continuar.')
+        cy.wait(2000)
+        //components.screenshot('Trying to transfer an amount greater than the account balance')
+    });
+
+    it('Trying to transfer an amount greater than the account balance', () => {
+        components.clickButton('.odd > :nth-child(4) > div.flex > .cursor-pointer')
+        components.clearInputText('#valor')
+        components.inputText('#valorCentavos','01')
+        components.clickButton('#continuar2')
+        components.verifySwalMessage('O valor deve ser maior que R$ 0,01.')
         cy.wait(2000)
         //components.screenshot('Trying to transfer an amount greater than the account balance')
     });

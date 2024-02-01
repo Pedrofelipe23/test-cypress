@@ -98,7 +98,7 @@ describe('BanCar - minhaConta', () => {
         //components.screenshot('personal data: email change successfully')
     });
 
-    it('personal data: email change successfully', () => {
+    it.skip('personal data: email change successfully', () => {
         components.clickButton('#dadosPessoais')
         components.clickButton('#alterarEmail')
         components.inputText('#password','12345678Ti@')

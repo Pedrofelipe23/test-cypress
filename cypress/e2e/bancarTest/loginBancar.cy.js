@@ -8,12 +8,10 @@ describe('BanCar - login page', () => {
       }) 
 
     it('Attempting to log in with incorrect email',() => {
-        login.fillUsername('Pedrooo.pereirawj@gmail.com')
-        login.fillPassword('Wino@2330')
-        login.clickLoginButton()
+        cy.login('Pedrooo.pereirawj@gmail.com','Wino@2330')
         Components.verifySwalMessage('Verifique suas credenciais e tente novamente!')
         cy.wait(2000)
-    }) 
+    })
 
     it('log in without verifying reCAPTCHA',() => {
         login.fillUsername('Pedro.pereirawj@gmail.com')
@@ -23,7 +21,7 @@ describe('BanCar - login page', () => {
     })
 
     it('Attempt to log in without username and password',() => {
-        login.clickLoginButton()
+        cy.login(' ',' ')
         Components.verifySwalMessage('Verifique suas credenciais e tente novamente!')
         cy.wait(2000)
     })
@@ -74,6 +72,16 @@ describe('BanCar - login page', () => {
         cy.wait(2000)
     })
 
+    it('Sending incorrect email',()=>{
+        Components.verifyTextExists('#novasenha','Esqueci a senha')
+        Components.clickButton('#novasenha')
+        Components.inputText('#mail','emailIncorreto@gmail.com')
+        Components.clickContainsTextButton('Enviar link para e-mail')
+        cy.wait(3000)
+        Components.verifyTextExists('.flex-col > .text-heading-5','Enviamos um link para ')
+        cy.wait(2000)
+    })
+    
     it('Link to password change page expired',()=>{
         cy.visit('/externalPages/redefinirSenha?id=7de00843-bb9c-491b-bbbb-d47a57f39ea7')
         Components.verifyTextExists('.text-heading-5','Link inválido ou expirado!')

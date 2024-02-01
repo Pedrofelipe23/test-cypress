@@ -8,6 +8,10 @@ class Components{
         cy.get(tagButton).click()
     }
 
+    submitButton(tag){
+        cy.get(tag).submit()
+    }
+
     clickContainsTextButton(text){
         cy.contains(text).click();
     }
@@ -70,6 +74,22 @@ class Components{
 
     screenshot(fileName){
         cy.screenshot(fileName, { capture: 'fullPage' });
+    }
+
+    setViewportLarge() {
+        cy.viewport(1440, 824);
+    }
+
+    setViewportSmallNotebook() {
+        cy.viewport(1366, 768);
+    }
+    
+    setViewportTablet() {
+        cy.viewport(768, 1024);
+    }
+    
+    setViewportSMobile() {
+        cy.viewport(375, 667);
     }
 
 
