@@ -1,3 +1,4 @@
+import 'cypress-file-upload';
 
 class Components{
 
@@ -70,6 +71,16 @@ class Components{
 
     selectValueWithinTheCombo(tagContent,tagSelect,value){
         this.iframeContent(tagContent).selectFieldValue(tagSelect,value)
+    }
+
+    uploadFile(file,tag,type) {
+        cy.fixture(file).then((fileContent) => {
+            cy.get(tag).attachFile({
+                fileContent: fileContent,
+                fileName: file,
+                mimeType: 'application/' + type
+            });
+        });
     }
 
     screenshot(fileName){
