@@ -53,8 +53,8 @@ class Components{
 
     iframeContent(tagContent) {
         return cy.get('#content_iframe').then(($iframe) => {
-          return cy.wrap($iframe.contents().find(tagContent));
-        });
+          return cy.wrap($iframe.contents().find(tagContent))
+        })
     }
 
     iframePageContent(tagContent,textContent){
@@ -79,12 +79,12 @@ class Components{
                 fileContent: fileContent,
                 fileName: file,
                 mimeType: 'application/' + type
-            });
-        });
+            })
+        })
     }
 
     screenshot(fileName){
-        cy.screenshot(fileName, { capture: 'fullPage' });
+        cy.screenshot(fileName, { capture: 'fullPage' })
     }
 
     setViewportLarge() {
