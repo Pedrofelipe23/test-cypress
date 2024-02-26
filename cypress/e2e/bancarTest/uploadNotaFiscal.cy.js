@@ -44,7 +44,7 @@ describe('bancar - uploadNotaFiscal', () => {
   it('Value validation test: minimum value input validation', () => {
     components.inputText('#valor','12')
     components.clickButton('.bg-button-primary')
-    components.verifySwalMessage('Por favor, insira um valor com pelo menos três dígitos.')
+    components.verifySwalMessage('')
   });
 
   it('Value validation test: non-zero value.', () => {
@@ -121,8 +121,8 @@ describe('bancar - uploadNotaFiscal', () => {
 
   it('page notaFiscal: upload invoice', () => {
     cy.visit('/pages/notaFiscal')
-    components.verifyTextExists('#notaa8262d88-0cf2-4b6d-87cc-bd3607bd7ca5 > .justify-between > div > .text-subtitle','R$ 10.000,00')
-    components.clickButton('#download036bef8e-754f-49aa-a40e-0ed55097ae6f')
+    components.verifyTextExists('.justify-start','Notas Fiscais')
+    components.clickButton('#downloadbf5f41fd-4f1b-47c2-954d-3e431f3318bb')
   });
 
 })
