@@ -119,4 +119,10 @@ describe('bancar - uploadNotaFiscal', () => {
     components.verifySwalMessage('Nota Fiscal salva com sucesso!')
   });
 
+  it('page notaFiscal: upload invoice', () => {
+    cy.visit('/pages/notaFiscal')
+    components.verifyTextExists('#notaa8262d88-0cf2-4b6d-87cc-bd3607bd7ca5 > .justify-between > div > .text-subtitle','R$ 10.000,00')
+    components.clickButton('#download036bef8e-754f-49aa-a40e-0ed55097ae6f')
+  });
+
 })
