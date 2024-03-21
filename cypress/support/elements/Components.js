@@ -73,16 +73,11 @@ class Components{
         this.iframeContent(tagContent).selectFieldValue(tagSelect,value)
     }
 
-    uploadFile(file,tag,type) {
-        cy.fixture(file).then((fileContent) => {
-            cy.get(tag).attachFile({
-                fileContent: fileContent,
-                fileName: file,
-                mimeType: 'application/' + type
-            })
-        })
+    uploadFile(fileName, tag) {
+        cy.get(tag).selectFile(fileName);
     }
-
+    
+    
     screenshot(fileName){
         cy.screenshot(fileName, { capture: 'fullPage' })
     }

@@ -9,7 +9,8 @@ describe('bancar - transacoesSuporte',() => {
 
     it('Buscar transação sem passar paramentro', () => {
         components.clickButton('.text-button-primary')
-        components.verifySwalMessage('Erro interno ao buscar dados.  Verifique o dado inserido e tente novamente.')
+        components.verifySwalMessage('Por favor, insira um dado válido para buscar uma transação.')
+        cy.wait(2000)
     });
 
     it('test - suporte', () => {

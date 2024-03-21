@@ -8,7 +8,8 @@ module.exports = defineConfig({
   
 
   e2e: {
-    baseUrl: 'http://localhost:8080/eva'
+    //baseUrl: 'http://localhost:8080/eva'
+    baseUrl: 'https://bancar.com.br/pay'
     ,
     videosFolder: "cypress/videos",
     video: true
